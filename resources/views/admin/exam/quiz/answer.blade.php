@@ -1,48 +1,22 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <title>Document</title>
-</head>
-
-<body>
-
-    {{-- @php
-    $mark = 0;
-@endphp --}}
-
+@extends('frontEnd.master')
+@section('title')
+    Home
+@endsection
+@section('content')
+<section class="answer" style="margin-top:80px;background-color:rgba(22,34,57,0.95); padding-left:60px;">
 @foreach ($questions as $question)
-    <h1 style="text-align: center">Question:{{ $question->Question }}<br></h1>
-    <h4 style="padding-left:620px">option_1:{{ $question->option_1 }}<br></h4>
-    <h4 style="padding-left:620px">option_2:{{ $question->option_2 }}<br></h4>
-    <h4 style="padding-left:620px">option_3:{{ $question->option_3 }}<br></h4>
-    <h4 style="padding-left:620px">option_4:{{ $question->option_4 }}<br></h4>
-    <h4 style="padding-left:620px">Answer:{{ $question->Answer }}<br></h4>
-    <h2 style="padding-left:620px">submitted_answer:{{ $question->submissions->submitted_answer }} <br></h2>
-    {{-- <h2 @if($question->submissions->submitted_answer == $question->Answer) class="right_answer" @endif>
-        @if($question->submissions->submitted_answer == $question->Answer)
-            Right Answer
-            @php
-                $mark += 1; // Increment the mark if the answer is correct
-            @endphp
-        @else
-            Wrong Answer
-        @endif
-    </h2> --}}
-    {{-- @dd($question->submissions->right_answer) --}}
+    <h3 style="color:aliceblue; padding-top: 15px;">{{ $question->Question }}<br></h3>
+    <h6 style="color:aliceblue;"><input type="checkbox">{{ $question->option_1 }}<br></h6>
+    <h6 style="color:aliceblue;"><input type="checkbox">{{ $question->option_2 }}<br></h6>
+    <h6 style="color:aliceblue;"><input type="checkbox">{{ $question->option_3 }}<br></h6>
+    <h6 style="color:aliceblue;"><input type="checkbox">{{ $question->option_4 }}<br></h6>
+    <h6 style="color:aliceblue;">Answer:{{ $question->Answer }}<br></h6>
+    <h5 style="color:#f5a425;">submitted_answer:{{ $question->submissions->submitted_answer }} <br></h5>
+
 @endforeach
-
-<h2 style="padding-left:620px">Total Mark: {{ $question->submissions->where('user_id', Auth::user()->id)->count('right_answer') }}</h2>
-
-    {{-- @foreach ($question->submissions as $item)
-            {{$question->where('Answer',$question->Answer)->count()}} 
-                {{ $item->where('Answer',$question->submitted_answer)->count()}} 
-    @endforeach --}}
-
-
-
-
-
+<h2 style="color:aliceblue; margin: 0px">Total Mark: {{ $question->submissions->where('user_id', Auth::user()->id)->count('right_answer') }}</h2>
+</section>
 </body>
 
 </html>
+@endsection

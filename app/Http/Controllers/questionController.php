@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 class questionController extends Controller
 {
     public $create, $questions;
+   
     public function view($id)
     {
        

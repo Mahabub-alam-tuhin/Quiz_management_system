@@ -12,29 +12,46 @@ use Illuminate\Http\Request;
 class questionController extends Controller
 {
     public $create, $questions;
-   
-    public function view($id)
+     public function add_question()
     {
+        
+       return view('admin.exam.question.add_question');
+    }
+    // public function view()
+    // {
        
-        $questions = question::where('quiz_id', $id)->with("quiz")->get();
+    //     $questions = question::all()->with("quiz")->get();
+    //     return view('admin.exam.question.view', compact('questions'));
+    // }
+
+    public function view()
+    {
+        $questions = question::all();
         return view('admin.exam.question.view', compact('questions'));
     }
+
     public function store(Request $request)
 
     {
+        // dd(request()->all());   
+        $question = new question();
+        $question->quiz_id = $request->quiz_id;
+        $question->Question = $request->Question;
+        $question->option_1 = $request->option_1;
+        $question->option_2 = $request->option_2;
+        $question->option_3 = $request->option_3;
+        $question->option_4 = $request->option_4;
         
-        $this->create = new question();
-        $this->create->quiz_id = $request->quiz_id;
-        $this->create->name = $request->name;
-        $this->create->Question = $request->Question;
-        $this->create->option_1 = $request->option_1;
-        $this->create->option_2 = $request->option_2;
-        $this->create->option_3 = $request->option_3;
-        $this->create->option_4 = $request->option_4;
-        $this->create->Answer = $request->Answer;
-        $this->create->save();
-
-        $this->create->save();
+        if ($request->multiple == "single") {
+            $question->Answer = $request->Answer;
+        } else if ($request->multiple == "multiple") {
+            $exploed_multiple = explode(',', request()->Answer);
+            $decoded = json_encode($exploed_multiple);
+            $question->Answer = $decoded;
+            $question->multiple = 1;
+        }
+        $question->save();
+    
         return back()->with('message', 'info create successfully');
     }
     public function edit($id)

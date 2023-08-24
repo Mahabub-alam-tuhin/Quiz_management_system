@@ -5,12 +5,12 @@
 <div class="card card-primary">
     <div class="card-header">
       <h3 class="card-title">Add Question</h3> 
-      <td><a href="{{route('admin.exam.question.view',$quiz->id)}}"class="btn btn-success">View Question</a></td>
+      {{-- <td><a href="{{route('admin.exam.question.view')}}"class="btn btn-success">View Question</a></td> --}}
 
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form action="{{route('admin.exam.question.store',$quiz->id)}}" method="post">
+    <form action="{{route('admin.exam.question.store')}}" method="post">
       @csrf
       <div class="card-body">
         <div class="col-md-12 form-control">
@@ -20,7 +20,6 @@
                   <option value="{{ $quize->id }}">{{ $quize->Quiz }}</option>
               @endforeach
           </select>
-
       </div>
         <div class="form-group">
           <label for="exampleInputEmail1">Question</label>
@@ -46,16 +45,21 @@
               <input type="text" name="option_4"   class="form-control"  placeholder="Option">
             </div>  
             </div>
+            
         <div class="form-group">
           <label for="exampleInputEmail1">Right Answer</label>
           <input type="text" name="Answer" class="form-control"  placeholder="Right Answer">
-        </div>  
-        <div class="form-group mb-0">
-          <div class="custom-control custom-checkbox">
-            <input type="checkbox" name="terms" class="custom-control-input" id="exampleCheck1">
-            <label class="custom-control-label" for="exampleCheck1">I agree to the <a href="#">terms of service</a>.</label>
-          </div>
         </div>
+        <div class="row">
+        <div class="col-2 form-check">
+          <input type="radio" class="form-check-input" id="radio1" name="multiple" value="single">
+          <label class="form-check-label" for="radio1">single answer</label>
+        </div>
+        <div class="col-2 form-check">
+          <input type="radio" class="form-check-input" id="radio2" name="multiple" value="multiple">
+          <label class="form-check-label" for="radio2">multiple answer</label>
+        </div> 
+        </div> 
       </div>
       <!-- /.card-body -->
       <div class="card-footer">

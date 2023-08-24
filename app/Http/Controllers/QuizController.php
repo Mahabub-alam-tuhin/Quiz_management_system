@@ -127,17 +127,6 @@ class QuizController extends Controller
         ->groupBy('quizes.id', 'quizes.name', 'users.id', 'users.name')
         ->get();
 
-    // dd($quiz_result->toArray());
-
-        // $quiz=quizes::where('id',$id)->find($id);
-        // $submission=question_submission::join('questions','question_submissions.quiz_id','=','questions.quiz_id')
-        // ->select('questions.*','question_submissions.*')
-        // ->where('question_submissions.quiz_id', $id)
-     
-        // ->get(); 
-        // dd($submission->toArray());
-    //    $submission = question_submission::where('quiz_id', $id)->with('user')->get();
-
        return view('admin.exam.quiz.examinar', compact('quiz_result'));
 
     }
@@ -151,19 +140,18 @@ class QuizController extends Controller
     public function answer($id){
       
         // $submission = question_submission::where('user_id',Auth::user()->id)->with("questions")->get();
-        $questions = question::where('quiz_id',$id)->with("submissions")->get();
-
+        $questions = question::where('quiz_id', $id)->with('submissions')->get();
         //   dd($questions->toArray());
         return view('admin.exam.quiz.answer',compact('questions'));
     }
 
 
-    public function add_question($id)
-    {
+    // public function add_question($id)
+    // {
         
-       $quiz=quizes::find($id);
-       return view('admin.exam.question.add_question',compact('quiz'));
-    }
+    //    $quiz=quizes::find($id);
+    //    return view('admin.exam.question.add_question',compact('quiz'));
+    // }
 
     
    

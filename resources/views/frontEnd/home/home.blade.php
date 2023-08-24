@@ -11,17 +11,17 @@
 
     <div class="video-overlay header-text">
         <div class="caption">
-            <h6>Graduate School of Management</h6>
-            <h2><em>Your</em> Classroom</h2>
+            <h6>Welcome to online Quiz platform</h6>
+            <h2><em>Take</em> a quiz</h2>
             <div class="main-button">
-                <div class="scroll-to-section"><a href="#section2">Discover more</a></div>
+               <a href="{{ route('login') }}">Start Now</a>
             </div>
         </div>
     </div>
 </section>
 <!-- ***** Main Banner Area End ***** -->
 
-
+{{-- 
 <section class="features">
     <div class="container">
         <div class="row">
@@ -194,9 +194,9 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
-<section class="section courses" data-section="section4">
+{{-- <section class="section courses" data-section="section4">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
@@ -351,10 +351,10 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 
-<section class="section video" data-section="section5">
+{{-- <section class="section video" data-section="section5">
     <div class="container">
         <div class="row">
             <div class="col-md-6 align-self-center">
@@ -378,7 +378,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> --}}
 
 
 

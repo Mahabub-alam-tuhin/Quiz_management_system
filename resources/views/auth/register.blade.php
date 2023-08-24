@@ -81,7 +81,7 @@
                 <div class="col-md-7 col-xs-12">
                     <div class="continer centerIt">
                         <div>
-                            <h4>Take <em>any online course</em> and win $326 for your next class</h4>
+                            <h4>Please <em>Register</em> your Account here</h4>
                             <div class="counter">
 
                                 <div class="days">

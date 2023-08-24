@@ -6,7 +6,7 @@
 </head>
 
 <body>
-   
+    <button class="btn btn-success"><a href="{{ route ('admin.exam.quiz.view')}}">Back</a> </button>                               
     <h4>Teacher name:{{ $quiz->name }}<br></h4>
     <h4>Quiz name:{{ $quiz->Quiz }}<br></h4>
     @foreach ($questions as $question)

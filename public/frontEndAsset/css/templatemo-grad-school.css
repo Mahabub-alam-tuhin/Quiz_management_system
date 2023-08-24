@@ -166,7 +166,7 @@ a.menu-link { display: none; }
 
 .main-header {
     background-color: rgba(22,34,57,0.95);
-    height: 80px;
+    height: 75px;
     position: fixed;
     z-index: 12;
     width: 100%;
@@ -193,6 +193,7 @@ a.menu-link { display: none; }
 .main-menu {
     float: right;
     padding-right: 60px;
+    margin-top: 30px;
 }
 
 .main-menu li {
@@ -200,10 +201,12 @@ a.menu-link { display: none; }
     margin-top: 20px;
     margin-left: 15px;
     position: relative;
+    top: -30px;
 }
 
 .main-menu li:first-child {
-    margin-left: 0px;
+    
+    top: -30px;
 }
 
 .main-menu li a {
@@ -228,7 +231,6 @@ a.menu-link { display: none; }
 }
 
 .main-menu li .sub-menu {
-    position: absolute;
     background-color: #18233a;
     opacity: 0;
     visibility: hidden;
@@ -313,7 +315,7 @@ a.menu-link { display: none; }
     background-color: rgba(22,34,57,0.85);
     top: 0;
     left: 0;
-    bottom: 7px;
+    bottom: 0px;
     width: 100%;
 }
 
@@ -624,7 +626,7 @@ section.coming-soon {
     background-repeat: no-repeat;
     background-size: cover;
     background-color: #172238;
-    padding: 120px 0px;
+    padding: 130px 0px;
 }
 
 section.coming-soon .continer .counter div {

@@ -6,13 +6,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\questionController;
 use App\Http\Controllers\examController;
-use App\Http\Controllers\loginControler;
-use App\Models\question;
-use App\Models\question_submission;
-use App\Models\quizes;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\profileController;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,20 +29,32 @@ Route::get('/', [frontController::class, 'index'])->name('/');
 Route::get('/view', [frontController::class, 'view'])->name('frontEnd.exam.view')->middleware('isstudent');
 Route::get('/question/{id}', [examController::class, 'question'])->name('frontEnd.question.view');
 Route::post('/store', [examController::class, 'store'])->name('frontEnd.question.store');
-// Route::get('/register', [loginControler::class, 'Register'])->name('frontEnd.student.register');
-// Route::post('/saveregister', [loginControler::class, 'saveregister'])->name('frontEnd.student.saveregister');
-// Route::get('/login', [loginControler::class, 'login'])->name('frontEnd.student.login');
-// Route::post('/loginCheck', [loginControler::class, 'loginCheck'])->name('frontEnd.student.loginCheck');
+Route::get('/profile/{id}', [profileController::class, 'profile'])->name('frontEnd.profile.view');
 
 
 
 
 
-Route::get('/test', function () {
+// Route::get('/test', function () {
 
-    $quiz = quizes::with("questions")->get()->toArray();
-    dd($quiz);
-});
+//     return view('admin.exam.question.test');
+// });
+
+// Route::post('/test_submit', function () {
+//     foreach(request()->roles as $role) {
+//         if($role == "teacher") {
+//             $option = new option();
+//             $option->f_name = request()->first_name;
+//             $option->l_name = request()->last_name;
+//             $option->roles = $role;
+//             $option->save();
+//         }else {
+//             return redirect()->back();  
+//         }
+        
+//     }
+    
+// })->name('test_submit');
 
 // Route::get('/test',[QuizController::class,'examinar']);
 
@@ -104,16 +112,16 @@ Route::prefix('quiz')->group(function () {
     // Route::get('/examinar_details/{id}', [QuizController::class, 'examinar_details'])->name('admin.exam.quiz.examinar_details')->middleware('isteacher');
     Route::get('/answer/{id}', [QuizController::class, 'answer'])->name('admin.exam.quiz.answer');
 
-    Route::get('/add_question/{id}', [QuizController::class, 'add_question'])->name('admin.exam.question.add_question')->middleware('isteacher');;
+    // Route::get('/add_question/{id}', [QuizController::class, 'add_question'])->name('admin.exam.question.add_question')->middleware('isteacher');;
 });
 
 Route::prefix('exam')->group(function () {
-
-    Route::post('/store', [questionController::class, 'store'])->name('admin.exam.question.store')->middleware('isteacher');;
-    Route::get('/view/{id}', [questionController::class, 'view'])->name('admin.exam.question.view')->middleware('isteacher');;
-    Route::get('/edit/{id}', [questionController::class, 'edit'])->name('admin.exam.question.edit')->middleware('isteacher');;
-    Route::post('/update/{id}', [questionController::class, 'update'])->name('admin.exam.question.update')->middleware('isteacher');;
-    Route::get('/delete/{id}', [questionController::class, 'delete'])->name('admin.exam.question.delete')->middleware('isteacher');;
+    Route::get('/add_question', [questionController::class, 'add_question'])->name('admin.exam.question.add_question')->middleware('isteacher');
+    Route::post('/store', [questionController::class, 'store'])->name('admin.exam.question.store')->middleware('isteacher');
+    Route::get('/view', [questionController::class, 'view'])->name('admin.exam.question.view')->middleware('isteacher');
+    Route::get('/edit/{id}', [questionController::class, 'edit'])->name('admin.exam.question.edit')->middleware('isteacher');
+    Route::post('/update/{id}', [questionController::class, 'update'])->name('admin.exam.question.update')->middleware('isteacher');
+    Route::get('/delete/{id}', [questionController::class, 'delete'])->name('admin.exam.question.delete')->middleware('isteacher');
 });
 
 // });

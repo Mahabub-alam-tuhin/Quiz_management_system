@@ -1,4 +1,4 @@
-<section class="section contact" data-section="section6">
+{{-- <section class="section contact" data-section="section6">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -55,4 +55,4 @@
             </div>
         </div>
     </div>
-</footer>
+</footer> --}}

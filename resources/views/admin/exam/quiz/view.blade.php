@@ -34,7 +34,7 @@
                             <td>{{$quiz->Quiz}}</td>
                             <td>{{$quiz->date}}</td>
                             <td>{{$quiz->Time}}</td>
-                            <td><a href="{{route('admin.exam.question.add_question',$quiz->id)}}">Add Question</a></td>
+                            {{-- <td><a href="{{route('admin.exam.question.add_question',$quiz->id)}}">Add Question</a></td> --}}
                             <td>
                                 <a href="{{route('admin.exam.quiz.details',$quiz->id)}}" class="btn btn-info">Details</a>
                                 <a href="{{route('admin.exam.quiz.edit',$quiz->id)}}" class="btn btn-primary">Edit</a>

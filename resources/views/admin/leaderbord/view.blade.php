@@ -13,28 +13,28 @@
         <div class="card-datatable table-responsive">
             <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap5 no-footer"><div class="row me-2"><div class="col-md-2"><div class="me-3"><div class="dataTables_length" id="DataTables_Table_0_length"><label><select name="DataTables_Table_0_length" aria-controls="DataTables_Table_0" class="form-select"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select></label></div></div></div><div class="col-md-10"><div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-end flex-md-row flex-column mb-3 mb-md-0"><div id="DataTables_Table_0_filter" class="dataTables_filter"><label><input type="search" class="form-control" placeholder="Search.." aria-controls="DataTables_Table_0"></label></div><div class="dt-buttons btn-group flex-wrap"> <div class="btn-group"><button class="btn btn-secondary buttons-collection dropdown-toggle btn-label-secondary mx-3" tabindex="0" aria-controls="DataTables_Table_0" type="button" aria-haspopup="dialog" aria-expanded="false"><span><i class="ti ti-screen-share me-1 ti-xs"></i>Export</span><span class="dt-down-arrow"></span></button></div> <button class="btn btn-secondary add-new btn-primary" tabindex="0" aria-controls="DataTables_Table_0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasAddUser"><span><i class="ti ti-plus me-0 me-sm-1 ti-xs"></i><span class="d-none d-sm-inline-block">Add New User</span></span></button> </div></div></div></div><table class="datatables-users table border-top dataTable no-footer dtr-column" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
                     <thead>
-                    <tr>
-                        <th>Quiz name</th>
-                        <th>name</th>
-                        <th>Tatol_Number</th>
-                        <th>Number Of Quiz Given</th>
-                        <th>Action</th>
-                    </tr>
+                        <tr>
+                            <th>Teacher Name</th>
+                            <th>Quiz Name</th>
+                            <th>User Name</th>                          
+                            <th>Total Number</th>
+                            <th>Action</th>
+                        </tr>
                     </thead>
                     <thead>
                     <tbody>
 
-                    @foreach($quiz_result as $submissions)
+                        @foreach ($quiz_result as $quiz_data)
                         <tr>
-                            <td>{{$submissions->quiz_Quiz}}</td>
-                            
-                            <td>{{$submissions->user_name}}</td>
-                            <td>{{$submissions->marks}}</td>
-                            <td>{{ $submissions->submission }}</td>
+                            <td>{{ $quiz_data['teacher_name'] }}</td>
+                            <td>{{ $quiz_data['quiz_name'] }}</td>
+                            <td>{{ $quiz_data['user_name'] }}</td>                           
+                            <td>{{ $quiz_data['total_number'] }} <b>out of</b> {{  $questions }}</td>
                             <td>
-                                <a href="{{ route ('admin.exam.quiz.view')}}" class="btn btn-info">Back</a>                                
+                                <a href="{{ route('dashboard') }}" class="btn btn-info">Back</a>                                
                             </td>
                         </tr>
+                        
                     @endforeach
                     </thead>
                     </tbody>

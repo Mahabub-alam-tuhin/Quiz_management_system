@@ -8,21 +8,25 @@ use Illuminate\Database\Seeder;
 
 class userRoleSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
-    {
-        userRole::truncate();
+  /**
+   * Run the database seeds.
+   */
+  public function run(): void
+  {
+    userRole::truncate();
 
-        userRole::create([
-          'name'=>'student',
-          'role_id'=>'1',
-        ]);
+    userRole::create([
+      'name' => 'student',
+      'role_id' => '1',
+    ]);
 
-        userRole::create([
-            'name'=>'Teacher',
-            'role_id'=>'2',
-          ]);
-    }
+    userRole::create([
+      'name' => 'Teacher',
+      'role_id' => '2',
+    ]);
+    userRole::create([
+      'name' => 'super_admin',
+      'role_id' => '3',
+    ]);
+  }
 }

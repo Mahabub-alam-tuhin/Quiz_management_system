@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('Quiz')->nullable();
             $table->string('date')->nullable();
             $table->string('Time')->nullable();
+            $table->string('Total_Question')->nullable();
+            $table->string('Total_attendence')->nullable();
             $table->string('status')->default(1);
             $table->timestamps();
         });

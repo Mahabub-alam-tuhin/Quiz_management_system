@@ -19,20 +19,14 @@ class teacherMiddleware
     {
         // return $next($request);
 
-        if(Auth::check()){
-            if(Auth::user()->user_role_id == 2)
-            {
-                
+        if (Auth::check()) {
+            if (Auth::user()->user_role_id == 2 || Auth::user()->user_role_id == 3) {
                 return $next($request);
-            }
-            else
-            {
+            } else {
                 return redirect('/');
             }
+        } else {
+            return redirect()->route('login');
         }
-        else{
-            return route('login');
-        }
-        
     }
 }

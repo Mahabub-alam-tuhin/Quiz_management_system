@@ -13,4 +13,8 @@ class quizes extends Model
     function questions(){
         return $this->hasMany(question::class,"quiz_id");
     } 
+
+    public function quizSubmission(){
+        return $this->hasMany(user_quiz_submission::class,'quiz_id');
+    } 
 }

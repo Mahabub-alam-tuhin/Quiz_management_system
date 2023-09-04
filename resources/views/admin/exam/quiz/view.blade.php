@@ -15,11 +15,14 @@
                     <thead>
                     <tr>
                         <th>Id</th> 
-                        <th>Teacher name</th>
                         <th>Quiz</th>
+                        <th>Teacher name</th>
                         <th>Quiz Date</th>
                         <th>Quiz Time</th>
-                        <th>Add Question</th> 
+                        <th>Total Question</th>
+                        <th>Total Question Mark</th>
+                        <th>Total attendence</th> 
+                        <th>Add question</th> 
                         <th>Action</th>
                         
                     </tr>
@@ -30,11 +33,17 @@
                     @foreach($quize as $quiz)
                         <tr>
                             <td>{{$i++}}</td>
-                            <td>{{$quiz->name}}</td>
                             <td>{{$quiz->Quiz}}</td>
+                            <td>{{$quiz->name}}</td>
+                            
                             <td>{{$quiz->date}}</td>
                             <td>{{$quiz->Time}}</td>
-                            {{-- <td><a href="{{route('admin.exam.question.add_question',$quiz->id)}}">Add Question</a></td> --}}
+                            <td>{{$quiz->questions->count()}}</td> 
+                            <td>{{$quiz->questions->count()}}</td> 
+                            <td>{{$quiz->quizSubmission->count()}} out of {{ $users }} </td> 
+                          
+
+                            <td><a href="{{route('admin.exam.question.add_question',$quiz->id)}}">Add Question</a></td>
                             <td>
                                 <a href="{{route('admin.exam.quiz.details',$quiz->id)}}" class="btn btn-info">Details</a>
                                 <a href="{{route('admin.exam.quiz.edit',$quiz->id)}}" class="btn btn-primary">Edit</a>

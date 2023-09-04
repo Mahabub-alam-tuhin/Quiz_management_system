@@ -3,7 +3,7 @@
     Home
 @endsection
 @section('content')
-    <section class="answer" style="margin-top:80px;background-color:rgba(22,34,57,0.95); padding-left:60px;">
+    <section class="answer" style="margin-top:75px;background-color:rgba(22,34,57,0.95); padding-left:60px;">
         @foreach ($questions as $question)
             <h3 style="color:aliceblue; padding-top: 15px;">{{ $question->Question }}<br></h3>
             
@@ -55,11 +55,25 @@
                 submitted_answer:{{ $question->submissions ? $question->submissions->submitted_answer : '' }}
                 <br>
             </h5>
-            @if ($question->submissions->right_answer == 1)
-                <p style="color: green;">Right Answer</p>
+            @if ($question->multiple == '1')
+                @php
+                    $decoded = json_decode($question->Answer);
+                    $submittedAnswers = json_decode($question->submissions->submitted_answer);
+                    $result=array_diff($decoded,$submittedAnswers);
+                @endphp
+                     @if (count($result) > 0)
+                     <p style="color: green;">Right Answer</p>
+                @else
+                    <p style="color: red;">Wrong Answer</p>
+                @endif
             @else
-                <p style="color: red;">Wrong Answer</p>
+                @if ($question->submissions->right_answer == 1)
+                    <p style="color: green;">Right Answer</p>
+                @else
+                    <p style="color: red;">Wrong Answer</p>
+                @endif
             @endif
+           
         @endforeach
         <h2 style="color:aliceblue; margin: 0px">Total Mark:
             {{ $question->submissions ? $question->submissions->where('user_id', Auth::user()->id)->count('right_answer') : '' }}

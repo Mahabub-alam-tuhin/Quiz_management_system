@@ -7,6 +7,14 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\questionController;
 use App\Http\Controllers\examController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\userController;
+use App\Http\Controllers\submissionController;
+use App\Http\Controllers\add_userController;
+use App\Http\Controllers\leadbordController;
+use App\Http\Controllers\quizSubmittedUserController;
+use App\Http\Controllers\add_roleController;
+
+
 use Illuminate\Support\Facades\Auth;
 
 
@@ -98,6 +106,7 @@ Route::get('/profile/{id}', [profileController::class, 'profile'])->name('frontE
 //    })->name('dashboard');
 // Route::group(['middleware' => 'isteacher'], function () {
 Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard')->middleware('isteacher');
+Route::get('/examinars', [leadbordController::class, 'examinars'])->name('admin.leaderbord.view')->middleware('isteacher');
 
 Route::prefix('quiz')->group(function () {
 
@@ -124,6 +133,30 @@ Route::prefix('exam')->group(function () {
     Route::get('/delete/{id}', [questionController::class, 'delete'])->name('admin.exam.question.delete')->middleware('isteacher');
 });
 
-// });
-    
-// );
+Route::prefix('user')->group(function () {
+    Route::get('/view', [userController::class, 'view'])->name('admin.user.view')->middleware('isteacher');
+});
+
+Route::prefix('submission')->group(function () {
+    Route::get('/view', [submissionController::class, 'view'])->name('admin.submission.view')->middleware('isteacher');
+});
+Route::prefix('add_role')->group(function () {
+    Route::get('/create', [add_roleController::class, 'create'])->name('admin.add_role.create')->middleware('isteacher');
+    Route::post('/store', [add_roleController::class, 'store'])->name('admin.add_role.store')->middleware('isteacher');
+    Route::get('/view', [add_roleController::class, 'view'])->name('admin.add_role.view')->middleware('isteacher');
+
+});
+
+Route::prefix('add_user')->group(function () {
+    Route::get('/create', [add_userController::class, 'create'])->name('admin.add_user.create')->middleware('isteacher');
+    Route::post('/store', [add_userController::class, 'store'])->name('admin.add_user.store')->middleware('isteacher');
+    Route::get('/view', [add_userController::class, 'view'])->name('admin.add_user.view')->middleware('isteacher');
+    Route::get('/edit/{id}', [add_userController::class, 'edit'])->name('admin.add_user.edit')->middleware('isteacher');
+    Route::post('/update/{id}', [add_userController::class, 'update'])->name('admin.add_user.update')->middleware('isteacher');
+    Route::get('/delete/{id}', [add_userController::class, 'delete'])->name('admin.add_user.delete')->middleware('isteacher');
+   
+});
+
+Route::prefix('quizSubmittedUser')->group(function () {
+    Route::get('/view', [quizSubmittedUserController::class, 'view'])->name('admin.quizSubmittedUser.view')->middleware('isteacher');
+});
